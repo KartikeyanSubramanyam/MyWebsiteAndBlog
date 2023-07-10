@@ -116,78 +116,19 @@ of California, San Diego</font>
 </table>
 <br>
 
-</blockquote>
-<table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
-<tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Relevant Coursework&nbsp;&nbsp;</big></font></b></nobr></td></tr></table>
-<blockquote>
-<ul>
-  <li> Software Engineering </li>
-  <li> Computer Security </li>
-  <li> Computer Networks </li>
-  <li> Networked Services </li>
-  <li> Cryptography </li>
-  <li> Operating Systems </li>
-  <li> Compiler Construction </li>
-  <li> Programming Languages: Principles and Paradigms </li>
-  <li> Computer Architecture </li>
-  <li> Deep Learning </li>
-  <li> Computer Vision </li>
-  <li> Digital Systems </li>
-  <li> Advanced Data Structures </li>
-  <li> Theory of Computation </li>
-</ul>
-</blockquote>
 
 <table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
   <tr bgcolor="#86af49"><td width="100%">
     <b><big>Research</big></b>
-    <blockquote>
-        <p>Over my 2 years as a Research Assistant, I have worked for the Aerosec group at UCSD researching security concerns in aviation as well as for the <a href="http://seelab.ucsd.edu">System Energy Efficiency Lab</a> (SeeLab) at UCSD, where I worked on accelerating Fully Homomorphic Encryption operations in Deep Neural Networks. While I cannot publicly post the work I have done with Aerosec due to matters of national and industrial security, I can still talk about my work (to a certain degree).</p>
-      
   </td></tr>
 </table>
+<blockquote>
+  <p>Over my 2 years as a Research Assistant, I have worked for the Aerosec group at UCSD researching security concerns in aviation as well as for the <a href="http://seelab.ucsd.edu">System Energy Efficiency Lab</a> (SeeLab) at UCSD, where I worked on accelerating Fully Homomorphic Encryption operations in Deep Neural Networks. While I cannot publicly post the work I have done with Aerosec due to matters of national and industrial security, I can still talk about my work (to a certain degree).</p>
 
 <blockquote>
 <p><span class="title">FHEmem: Bit-serial Processing In-Memory Accelerator for Fully Homomorphic Encryption</span>.
 
-
 </blockquote>
-
-
-<table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
-<tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Projects&nbsp;&nbsp;</big></font></b></nobr></td></tr></table>
-<blockquote>
-<ul>
-<li><b> Router:</b> Designed a router that handles communications between 2 emulated servers and a client. Router handles ARP, TCP, UDP, and ICMP packets, and supports wget, ping, and traceroute commands. Implemented longest prefix match and ARP caching. <b> Language: C </b><br></li>
-<li><b> Sliding Window Protocol:</b> Implemented the hosts as threads that run on my processor, and simulated the network links between these hosts (threads). Implemented Sliding Window Protocol that uses selective retransmission and cumulative ACK scheme to achieve reliable transmission of data frames and thereby enabling the receiver to populate the entire original message that the sender had sent. <b> Language: C</b><br></li>
-<li><b>Taxi Travel Time Prediction Task:</b> Led and developed an MLP Regressor model alongside 2 other developers that is trained on an engineered dataset that incorporates various factors, such as the Type of Call, Local Time in Portugal, Day of the Week, etc. Heavily utilized feature engineering to determine rush-hours and non rush-hours, and the MLP model architecture was built with 4 layers and uses ReLU as an activation function, outputting a single floating point number. Experimented with LSTM models and also a LightGBM model but the MLP Regressor gave us the best results.<b> Language: Python</b><br></li>
-<li><b>Compiler:</b> Created a Rust compiler to generate x86-64 assembly for a generic language. Optimized the compiler to reduce the number of assembly instructions and implemented let instructions, binary operators, booleans, conditionals, variable assignment, loops, top-level function definitions, heap allocation, and garbage collection.<b> Language: Rust</b></li>
-<li><b>"Yodie":</b> Led and developed a custom processor that supports specific Forward Error Correction (FEC) tasks alongside a team of 2 other developers. The instruction set architecture of our processor featured fixed-length instructions (machine code) 9 bits wide. <b> Languages: System Verilog and Python</b><br></li>
-<li><b>"SurfStore":</b> Created a cloud-based file storage service called SurfStore. SurfStore is a networked file storage application that is based on Dropbox, and lets you sync files to and from the “cloud”. Implemented the cloud service, and a client which interacts with the service via gRPC. <b> Language: Go</b><br></li>
-<li><b>"TritonHTTP":</b> Built a simple web server that implements a subset of the HTTP/1.1 protocol specifications. Clients connect to a port on the server and use the TritonHTTP protocol to retrieve files from the server. The server reads data from the client to interpret one or more requests. Supports pipelined requests. <b> Language: Go</b><br></li>
-<li><b>"Birds of a Feather":</b> Led and developed a Mobile App alongside a team of 3 other developers that uses the new Nearby API to find and make friends in the same class as the user. Implemented filters to shortlist other users based on user preferences and send messages using the Java Nearby API. Focused on using Agile principles, such as Scrum and standups to brainstorm through development and designing. Constantly maintained an organized Github repository. <b> Language: Java</b><br></li>
-<li><b>6 Tap Linear Feedback Register:</b> Designed an encrypter which reads a message from a range of locations in a register file in 8-bit ASCII format, encrypts the lower 6 bits with a 6-bit PN code, and writes the resulting encrypted message into another range of locations in the same register file. <b> Language: System Verilog</b><br></li>
-<li><b>Traffic Signal:</b> Implemented a traffic signal controller for a junction with a 3-case scenario: East-West Straights, East-West Lefts, and North-South straights. Managed 6 possible states between all 3 sets of traffic lights.<b> Language: System Verilog</b> <br></li>
-<li><b>Alarm Clock:</b> Implemented a conventional alarm clock, which tracks and displays hours, minutes, and seconds. Extended the alarm clock functionality to include days of the week and month and date. <b> Language: System Verilog</b><br></li>
-<li><b>Nachos Operating System:</b> Designed an Operating System by implementing my own threading, scheduling, and multiprogramming functions from scratch to make a functional OS. <b> Language: Java</b><br></li>
-<li><b>DNS Blocker:</b> Implemented a hash table-based in-memory database using single linked chains for collision resolution. The database contained the DNS names of websites the client wished to block. If a DNS name is found in the database, it will respond with a blocked message, and not let the host access the webpage. Sold to around 100 houses in various residential complexes in Dubai. <b> Language: C</b> <br></li>
-<li><b>FP Converter:</b> Built a program that reads the file of binary 8-bit FP numbers and converted them to the IEEE Single Precision (32 bit) format.<b> Language: ARM-32</b> <br></li>
-<li><b>The Game of Life:</b> Developed by John Conway, the Game of Life is a mathematical simulation of a simplified evolution process. Developed a simulation that occurs on a two-dimensional grid of cells over a series of discrete timesteps. Wrote the fastest program in a class of 250 students. <b> Language: ARM-32</b><br></li>
-<li><b>ETL Program:</b> Made a custom ETL Program to process CSV files <b> Language: C</b><br></li>
-</ul>
-
-
-</blockquote>
-<table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
-<tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Awards and Competitions&nbsp;&nbsp;</big></font></b></nobr></td></tr></table>
-<blockquote>
-Provost Honors, UCSD <br>
-SDCTF 2023 <br>
-<a href="https://github.com/acmucsd/sdctf-2022"> SDCTF 2022 </a><br>
-Solved about 60% of challenges on <a href="https://www.defendtheweb.net/">Defend the Web</a><br>
-Fastest Assembly code in CSE 30 for the Game of Life, UCSD <br> 
-High Achiever, Dubai Scholars Private School <br>
-
 </blockquote>
 <table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
 <tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Work Experiences</big></font></b></nobr></td></tr></table>
@@ -234,6 +175,85 @@ High Achiever, Dubai Scholars Private School <br>
 </ul>
 </blockquote>
 
+
+<table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
+<tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Relevant Coursework and Projects&nbsp;&nbsp;</big></font></b></nobr></td></tr></table>
+<blockquote>
+<ul style='list-style-type:square'>
+<li><b>Computer Security</b></li>
+  <ul>
+    <li>Implemented and learnt methods to mitigate various attacks such as: 
+      <ul>
+        <li>Buffer Overflows</li>
+        <li>Side Channel attacks: including memory based and time based side channel attacks</li>
+        <li>Web attacks: primarily including SQL injections with escaping, cross site scripting with certain defenses, and cross site request forgery</li>
+        <li>Network Attacks: this assignment included social engineering, reverse engineering, and gaining familiarity with command line tools like netcat, nmap, ssh, tcpdump and wget. Found a Zero-day vulnerability in the infrastructure of this assignment that allowed me to snoop on possible solutions and the submissions of other students.</li>
+      </ul>
+  </ul>
+<li><b>Computer Networks</b></li>
+  <ul>
+    <li><b> Router:</b> Designed a router that handles communications between 2 emulated servers and a client. Router handles ARP, TCP, UDP, and ICMP packets, and supports wget, ping, and traceroute commands. Implemented longest prefix match and ARP caching.<b> Language: C </b><br></li>
+    <li><b> Sliding Window Protocol:</b> Implemented the hosts as threads that run on my processor, and simulated the network links between these hosts (threads). Implemented Sliding Window Protocol that uses selective retransmission and cumulative ACK scheme to achieve reliable transmission of data frames and thereby enabling the receiver to populate the entire original message that the sender had sent.<b> Language: C</b><br></li>
+  </ul>
+<li><b>Software Engineering</b></li>
+  <ul>
+    <li><b>"Birds of a Feather":</b> Led and developed a Mobile App alongside a team of 3 other developers that uses the new Nearby API to find and make friends in the same class as the user. Implemented filters to shortlist other users based on user preferences and send messages using the Java Nearby API. Focused on using Agile principles, such as Scrum and standups to brainstorm through development and designing. Constantly maintained an organized Github repository.<b> Language: Java</b><br></li>
+  </ul>
+<li><b>Systems Architecture</b></li>
+  <ul>
+    <li><b>"Yodie":</b> Led and developed a custom processor that supports specific Forward Error Correction (FEC) tasks alongside a team of 2 other developers. The instruction set architecture of our processor featured fixed-length instructions (machine code) 9 bits wide.<b> Languages: System Verilog and Python</b><br></li>
+  </ul>
+<li><b>Networked Services</b></li>
+  <ul>
+    <li><b>"SurfStore":</b> Created a cloud-based file storage service called SurfStore. SurfStore is a networked file storage application that is based on Dropbox, and lets you sync files to and from the “cloud”. Implemented the cloud service, and a client which interacts with the service via gRPC.<b> Language: Go</b><br></li>
+    <li><b>"TritonHTTP":</b> Built a simple web server that implements a subset of the HTTP/1.1 protocol specifications. Clients connect to a port on the server and use the TritonHTTP protocol to retrieve files from the server. The server reads data from the client to interpret one or more requests. Supports pipelined requests.<b> Language: Go</b><br></li>
+  </ul>
+<li><b>Operating Systems</b></li>
+  <ul>
+    <li><b>Nachos Operating System:</b> Designed an Operating System by implementing my own threading, scheduling, and multiprogramming functions from scratch to make a functional OS.<b> Language: Java</b><br></li>
+  </ul>
+<li><b>Deep Learning</b></li>
+  <ul>
+    <li><b>Taxi Travel Time Prediction Task:</b> Led and developed an MLP Regressor model alongside 2 other developers that is trained on an engineered dataset that incorporates various factors, such as the Type of Call, Local Time in Portugal, Day of the Week, etc. Heavily utilized feature engineering to determine rush-hours and non rush-hours, and the MLP model architecture was built with 4 layers and uses ReLU as an activation function, outputting a single floating point number. Experimented with LSTM models and also a LightGBM model but the MLP Regressor gave us the best results.<b> Language: Python</b><br></li>
+  </ul>
+  <li><b>Computer Vision</b></li>
+  <ul>
+    <li></li>
+  </ul>
+<li><b>Compiler Construction</b></li>
+  <ul>
+    <li><b>'snek' Compiler:</b> Created a Rust compiler to generate x86-64 assembly for a generic language. Optimized the compiler to reduce the number of assembly instructions and implemented let instructions, binary operators, booleans, conditionals, variable assignment, loops, top-level function definitions, heap allocation, and garbage collection.<b> Language: Rust</b></li>
+  </ul>
+<li><b>Digital Systems</b></li>
+  <ul>
+    <li><b>6 Tap Linear Feedback Register:</b> Designed an encrypter which reads a message from a range of locations in a register file in 8-bit ASCII format, encrypts the lower 6 bits with a 6-bit PN code, and writes the resulting encrypted message into another range of locations in the same register file.<b> Language: System Verilog</b><br></li>
+    <li><b>Traffic Signal:</b> Implemented a traffic signal controller for a junction with a 3-case scenario: East-West Straights, East-West Lefts, and North-South straights. Managed 6 possible states between all 3 sets of traffic lights.<b> Language: System Verilog</b> <br></li>
+    <li><b>Alarm Clock:</b> Implemented a conventional alarm clock, which tracks and displays hours, minutes, and seconds. Extended the alarm clock functionality to include days of the week and month and date.<b> Language: System Verilog</b><br></li>
+  </ul>
+<li><b>Advanced Data Structures</b></li>
+  <ul>
+    <li><b>DNS Blocker:</b> Implemented a hash table-based in-memory database using single linked chains for collision resolution. The database contained the DNS names of websites the client wished to block. If a DNS name is found in the database, it will respond with a blocked message, and not let the host access the webpage.<b> Language: C</b> <br></li>
+    <li><b>FP Converter:</b> Built a program that reads the file of binary 8-bit FP numbers and converted them to the IEEE Single Precision (32 bit) format.<b> Language: ARM-32</b> <br></li>
+    <li><b>The Game of Life:</b> Developed by John Conway, the Game of Life is a mathematical simulation of a simplified evolution process. Developed a simulation that occurs on a two-dimensional grid of cells over a series of discrete timesteps. Wrote the fastest program in a class of 250 students.<b> Language: ARM-32</b><br></li>
+    <li><b>ETL Program:</b> Made a custom ETL Program to process CSV files <b> Language: C</b><br></li>
+  </ul>
+<li><b>Cryptography</b></li>
+<li><b>Theory of Computation</b></li>
+</ul>
+
+
+</blockquote>
+<table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
+<tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Awards and Competitions&nbsp;&nbsp;</big></font></b></nobr></td></tr></table>
+<blockquote>
+Provost Honors, UCSD <br>
+SDCTF 2023 <br>
+<a href="https://github.com/acmucsd/sdctf-2022"> SDCTF 2022 </a><br>
+Solved about 60% of challenges on <a href="https://www.defendtheweb.net/">Defend the Web</a><br>
+Fastest Assembly code in CSE 30 for the Game of Life, UCSD <br> 
+High Achiever, Dubai Scholars Private School <br>
+
+</blockquote>
 <table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
 <tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Misc</big></font></b></nobr></td></tr></table>
 <blockquote>
@@ -242,7 +262,7 @@ High Achiever, Dubai Scholars Private School <br>
     <li>ACM Cyber</li>
     <li>Pi Kappa Alpha</li>
   </ul>
-  During my free time, I like to play golf, surf, listen to music (favorite artists are Eric Clapton, Red Hot Chili Peppers and Radiohead), and read books (my current favorite authors are Fyodor Dostoevsky and Haruki Murakami) and security research papers. I am also an avid NBA fan and am a massive supporter of Lebron James and Kawhi Leonard.
+  During my free time, I like to play golf, surf, listen to music (favorite artists are Eric Clapton, Red Hot Chili Peppers and Radiohead), and read books (my current favorite authors are Fyodor Dostoevsky and Haruki Murakami) and security research papers. I am also an avid NBA fan and am a massive supporter of Kobe Bryant and Kawhi Leonard.
 </blockquote>
   <p>&nbsp;</p>
 <blockquote>
