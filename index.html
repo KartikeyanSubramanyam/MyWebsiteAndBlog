@@ -1,306 +1,1138 @@
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
-"http://www.w3.org/TR/REC-html40/loose.dtd"> 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kartikeyan Subramanyam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<style type="text/css">
-SPAN.title {
-  font-weight: bold;
+<style>
+:root {
+  --bg:        #070a0e;
+  --surface:   #0d1218;
+  --surface2:  #121a24;
+  --border:    #1e2d3d;
+  --gold:      #c8a45a;
+  --gold-dim:  #8a6e3a;
+  --blue:      #4fa3dc;
+  --text:      #dde3ec;
+  --muted:     #7a8899;
+  --tag-bg:    #111d2a;
+  --serif:     'DM Serif Display', Georgia, serif;
+  --sans:      'DM Sans', system-ui, sans-serif;
+  --mono:      'IBM Plex Mono', 'Courier New', monospace;
 }
 
-SPAN.title A {
-  font-weight: bold;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.4;
+}
+
+/* Layout */
+.container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+/* Nav */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7, 10, 14, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.9rem 0;
+}
+
+nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-name {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.8rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.8rem;
+  color: var(--muted);
   text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
 }
 
-SPAN.author {
-  font-weight: normal;
+.nav-links a:hover { color: var(--gold); }
+
+/* Hero */
+header {
+  padding: 5rem 0 4rem;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
 }
 
-SPAN.author A {
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-text h1 {
+  font-family: var(--serif);
+  font-size: 3.4rem;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.hero-title {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.hero-org {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.6rem;
+}
+
+.hero-summary {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 2rem;
+}
+
+.hero-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
   text-decoration: none;
+  transition: all 0.2s;
+  background: var(--surface);
 }
 
-SPAN.biblio {
+.btn:hover { border-color: var(--gold); color: var(--gold); background: var(--surface2); }
+.btn-primary { border-color: var(--gold-dim); color: var(--gold); }
+.btn-primary:hover { background: var(--gold); color: var(--bg); }
+
+.hero-img {
+  position: relative;
+}
+
+.hero-img img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 2px;
+  filter: grayscale(20%) contrast(1.05);
+  border: 1px solid var(--border);
+}
+
+.hero-img::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 2px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Badge strip */
+.badges {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1.4rem;
+}
+
+.badge {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--muted);
+  background: var(--tag-bg);
+  letter-spacing: 0.04em;
+}
+
+.badge-gold { border-color: var(--gold-dim); color: var(--gold); }
+.badge-blue { border-color: #2a5a80; color: var(--blue); }
+
+/* Sections */
+section {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+
+section:nth-child(2) { animation-delay: 0.15s; }
+section:nth-child(3) { animation-delay: 0.25s; }
+section:nth-child(4) { animation-delay: 0.35s; }
+section:nth-child(5) { animation-delay: 0.45s; }
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-label h2 {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Highlight block */
+.highlight-block {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 3px 3px 0;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* Publications */
+.pub-list { display: flex; flex-direction: column; gap: 1.2rem; }
+
+.pub-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.4rem 1.6rem;
+  transition: border-color 0.2s;
+}
+
+.pub-card:hover { border-color: var(--gold-dim); }
+
+.pub-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 0.4rem;
   font-style: italic;
 }
 
-SPAN.biblio A {
-  font-style: italic;
+.pub-title a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.pub-title a:hover { color: var(--gold); }
+
+.pub-authors {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.pub-venue {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--blue);
+  letter-spacing: 0.04em;
+}
+
+/* Patent */
+.patent-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold-dim);
+  border-radius: 0 4px 4px 0;
+  padding: 1.4rem 1.6rem;
+}
+
+.patent-title {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+
+.patent-meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.patent-meta-item {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.patent-meta-item span { color: var(--gold); }
+
+/* Experience */
+.exp-item { margin-bottom: 3rem; }
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.3rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.exp-role {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.exp-period {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.exp-org {
+  font-size: 0.88rem;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+
+.exp-program {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  letter-spacing: 0.04em;
+}
+
+/* Sub-project */
+.sub-project {
+  margin: 1.4rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border);
+}
+
+.sub-project:hover { border-left-color: var(--gold-dim); }
+
+.sub-project-header {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sub-project-header a {
+  color: inherit;
   text-decoration: none;
 }
 
-P.l1 {
-  margin-left: 0.5em;
+.sub-project-header a:hover { text-decoration: underline; }
+
+.sub-role-tag {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.5rem;
+  background: var(--tag-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
 }
 
-P.l2 {
-  margin-left: 1em;
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
+ul.bullets {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
-body            {font-family: Arial,Helvetica;}
-address         {font-family: Arial,Helvetica;}
-td              {font-family: Arial,Helvetica;}
-.bluelink       {text-decoration:none; color:blue}
-.greenlink      {text-decoration:none; color:green}
-.redlink        {text-decoration:none; color:red}
-.blacklink      {text-decoration:none; color:black}
-.blanklink      {text-decoration:none;}
+ul.bullets li {
+  padding-left: 1.2em;
+  position: relative;
+  font-size: 0.9rem;
+  color: #aab4c4;
+  line-height: 1.65;
+}
+
+ul.bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold-dim);
+  font-size: 0.8em;
+}
+
+/* Skills */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+.skill-group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.2rem 1.4rem;
+}
+
+.skill-group-title {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.skill-tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  background: var(--tag-bg);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--muted);
+}
+
+/* Awards */
+.awards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.award-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.award-item:last-child { border-bottom: none; }
+
+.award-name {
+  font-size: 0.9rem;
+  color: var(--text);
+  flex: 1;
+}
+
+.award-year {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+/* Languages */
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.8rem;
+}
+
+.lang-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.9rem 1rem;
+}
+
+.lang-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+.lang-level {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* Coursework */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.course-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.2rem 1.4rem;
+}
+
+.course-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.course-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.course-items li {
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding-left: 0.8em;
+  position: relative;
+}
+
+.course-items li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--gold-dim);
+}
+
+/* Misc */
+.misc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.misc-block h3 {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+.misc-block p, .misc-block li {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.misc-block ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.misc-block ul li::before { content: '— '; color: var(--gold-dim); }
+
+/* Footer */
+footer {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+footer p {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+/* Responsive */
+@media (max-width: 700px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-img { display: none; }
+  .misc-grid { grid-template-columns: 1fr; }
+  nav .nav-links { display: none; }
+  .hero-text h1 { font-size: 2.4rem; }
+}
+
+a { color: var(--blue); transition: color 0.2s; }
+a:hover { color: var(--gold); }
+
+strong { color: var(--text); font-weight: 600; }
 </style>
-
+</head>
 <body>
 
-<table cellspacing=0 border=0 cellpadding=20 width="100%" height="213">
-<tr>
-  <td width="296" valign="middle" height="173">
-    <img border="0" height="374" src="images/kartik_sf.jpeg">
-  </td>
-  <td width="710" valign="middle" height="173">
-    <dl>
-<h1>
-<a name="top"><font face="Arial">Kartikeyan Subramanyam</font></a>
-</h1>
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <span class="nav-name">KS // portfolio</span>
+    <ul class="nav-links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#coursework">Coursework</a></li>
+      <li><a href="#misc">Misc</a></li>
+    </ul>
+  </div>
+</nav>
 
-<h3 style="margin-top: 0; margin-bottom: 0"><font size="4" face="Arial">Bachelor's in Computer Science</font>
-</h3>
+<!-- HERO -->
+<header>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-text">
+        <p class="hero-title">Researcher &nbsp;·&nbsp; Engineer &nbsp;·&nbsp; Builder</p>
+        <h1>Kartikeyan<br>Subramanyam</h1>
+        <p class="hero-org">
+          UCSD Center for Healthcare Cybersecurity &nbsp;·&nbsp; ARPA-H DIGIHEALS Program<br>
+          University of California, San Diego — B.S. Computer Science
+        </p>
+        <p class="hero-summary">
+          I build systems that stay operational when the surrounding environment is failing. My work sits at the intersection of critical infrastructure security, fault-tolerant network architecture, and operational intelligence: from physically deploying backup hospital networks during ransomware attacks to building national-scale passive monitoring pipelines for medical device infrastructure across the United States.
+        </p>
+        <div class="badges">
+          <span class="badge badge-gold">ARPA-H DIGIHEALS</span>
+          <span class="badge badge-gold">Co-Inventor · U.S. Provisional Patent</span>
+          <span class="badge">OSCP (in progress)</span>
+        </div>
+        <div class="hero-links" style="margin-top:1.6rem">
+          <a href="mailto:k1subramanyam@health.ucsd.edu" class="btn btn-primary">✉ Contact</a>
+          <a href="https://youtu.be/eaVPTQJs1CE?si=oRAkEUl-orU2jQL2" target="_blank" class="btn">▶ CRASHCART Demo</a>
+          <a href="https://cyberhealth.ucsd.edu/research/current-projects/hr3p.html" target="_blank" class="btn">H-R3P Program</a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="images/kartik_sf.jpeg" alt="Kartikeyan Subramanyam">
+      </div>
+    </div>
+  </div>
+</header>
 
-<h3 style="margin-top: 0; margin-bottom: 0"><font face="Arial" size="4">University
-of California, San Diego</font>
-</h3>
+<!-- RESEARCH / EXPERIENCE -->
+<section id="research">
+  <div class="container">
+    <div class="section-label"><h2>Current Research</h2></div>
 
-<h3 style="line-height: 100%; margin-top: 0; margin-bottom: 0" align="center"><font face="Arial" size="4"><br>
-</font>
-</h3>
+    <div class="highlight-block">
+      Following a presentation of CRASHCART to <strong>ARPA-H Director Dr. Alicia Jackson</strong>, the system has received active encouragement toward commercialization from multiple government agencies and healthcare professionals. Entrepreneurial efforts to bring CRASHCART to market are ongoing.
+    </div>
 
-<table border="0" width="100%">
-</table>
-    </dl>
-<!-- <font size="4" face="Arial"><a class=bluelink href="https://www.linkedin.com/in/kartikeyan-s-a04561133/">LinkedIn</a></font> -->
-<p>
-</tr>
-</table>
-<br>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">Computational and Data Sciences Research Specialist</div>
+        <div class="exp-period">June 2024 – Present</div>
+      </div>
+      <div class="exp-org">UCSD Center for Healthcare Cybersecurity</div>
+      <div class="exp-program">Healthcare Ransomware Resiliency and Response Program (H-R3P) · ARPA-H DIGIHEALS</div>
 
-<!-- <table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
-  <tr bgcolor="#86af49"><td width="100%">
-    <b><big>Summary</big></b>
-  </td></tr>
-</table>
-<blockquote>
-  <p>I graduated from UCSD with a Bachelor's in Computer Science (<b>Major GPA: 3.65</b>) in June 2023. I am a conscientious, detail-oriented, and organized Software Engineer with a keen interest in cybersecurity and computer networks. My previous professional experiences include interning for security solutions companies and conducting research in network security and cryptography in ML. Skilled in systems development, vulnerability management, and network engineering and analysis. </p>
-</blockquote> -->
-
-<table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
-  <tr bgcolor="#86af49"><td width="100%">
-    <b><big>Research</big></b>
-  </td></tr>
-</table>
-<blockquote>
-  <p>Over my 2 years as a Research Assistant, I have worked for the Aerosec group at UCSD researching security concerns in aviation as well as for the <a href="http://seelab.ucsd.edu">System Energy Efficiency Lab</a> (SeeLab) at UCSD, where I worked on accelerating Fully Homomorphic Encryption operations in Deep Neural Networks. While I cannot publicly post the work I have done with Aerosec due to matters of national and industrial security, I can still talk about my research (to a certain degree).</p>
-
-<blockquote>
-<p><span class="title">FHEmem: Bit-serial Processing In-Memory Accelerator for Fully Homomorphic Encryption</span>.
-</blockquote>
-</blockquote>
-
-<table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
-<tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Work Experiences</big></font></b></nobr></td></tr></table>
-<blockquote>
-<b>VMaaS Intern at Securin (July 2022 - January 2023)</b>
-<ul style='list-style-type:square'>
-  <li>Worked with a team developing an NLP model to enumerate vulnerability types and weaknesses from data ingested from the NVD. Imported 210,000+ CVEs and formatted them according to the sub-vulnerability categories. </li>
-  <li>Conducted vulnerability scans on internal assets and networks using scanners such as Qualys, Nessus, Nexpose, and Ivanti Neurons to identify existing vulnerabilities.</li>
-  <li>Conducted penetration testing using company tools and schematics, including proprietary scanners, Metasploitable interface, manual reverse engineering, etc. </li>
-  <li>Followed the cycle of Vulnerability Management to Identify, Evaluate, Remediate, Verify, and Report the vulnerabilities in an organization's IT infrastructure. </li>
-  <li> References:<ul> 
-    <li> Ravi Pandey (Senior Director of Vulnerability Managemen Services at Securin) Email: rpandey@cybersecurityworks.com </li>
-    <li> Sandeep Challa (Lead Security Analyst, Securin) Email: sandeep.challa@cybersecurityworks.com</li>
-  </ul>
-</ul>
-
-<b>Research Assistant at UCSD (July 2022 - Present)</b>
-<ul style='list-style-type:square'>
-  <li>Network Security in commercial airplane networks:</li>
-  <ul>
-    <li>Reverse-engineered the structure of the network, multipurpose VLAN separations, and firewall rules used in the network.</li>
-    <li>Mapped the whole network on the aircraft and mapped all open ports to processes using only selectively available logs and relevant files in the disk image. <b>Languages: bash and Python</b>.</li>
-  </ul>
-  <li>In-Memory Accelerator for Fully Homomorphic Encryption (FHE):</li>
-  <ul>
-    <li>Configured the <a href="https://github.com/microsoft/SEAL.git">Microsoft SEAL library</a> for this research.</li>
-    <li>Mapped the data flow within the CNN and optimized the number of operations performed on the encrypted data.</li>
-    <li>Calculated throughput of individual encryption layers in both schemes, as well as the difference in the prediction rate on the MNIST dataset.</li>
-    <li>Measured and understood which layers were the 'bottleneck' for the CKKS and BFV encryption schemes.</li>
-    <li>Measured the impact of using different security parameters in both encryption schemes</li>
-    <li>Produced a workload of 20,000 FHE operations used as the benchmark for the paper. <b>Languages: C# and C++</b>.</li>
-  </ul>
-  <li> References:<ul> 
-    <li> <a href="https://cseweb.ucsd.edu/~schulman/">Aaron Shalev</a> (Assistant Professor, Computer Science and Engineering at UCSD) Email: ashalev@ucsd.edu </li>
-    <li> <a href="https://cseweb.ucsd.edu/~trosing/">Tajana Rosing</a> (Professor, Computer Science and Engineering at UCSD) Email: tajana@ucsd.edu </li>
-    <li> <a href="https://minxuanz.weebly.com/">Minxuan Zhou</a> (Ph.D. candidate at UCSD) Email: miz087@eng.ucsd.edu</li>
-  </ul>
-</ul>
-
-<b>Cybersecurity Intern at Spire Solutions (July 2021 - September 2021)</b>
-<ul style='list-style-type:square'>
-  <li>Implemented cutting-edge cybersecurity technologies such as CyberObserver, Elastic, AppSpider, and InsightVM and gained experience setting up tools for endpoint analytics, dynamic application security testing, etc.</li>
-  <li>Incorporated and calibrated security solutions to the clients' already existing IT infrastructure.</li>
-  <li> References:<ul> 
-    <li>Siddhartha Murthinty (Chief Technology Officer, Spire Solutions) Email: siddhartha.murthinty@gmail.com</li>
-  </ul>
-</ul>
-</blockquote>
-
-<table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
-<tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Relevant Coursework and Projects&nbsp;&nbsp;</big></font></b></nobr></td></tr></table>
-<blockquote>
-<ul style='list-style-type:square'>
-<li><b>Computer Security</b></li>
-  <ul>
-    <li>Implemented and learnt methods to mitigate various attacks such as: 
-      <ul>
-        <li><b>Buffer Overflows</b></li>
-        <li><b>Side Channel attacks:</b> including memory based and time based side channel attacks</li>
-        <li><b>Web attacks:</b> primarily including SQL injections with escaping, cross site scripting with certain defenses, and cross site request forgery</li>
-        <li><b>Network Attacks:</b> this assignment included social engineering, reverse engineering, and gaining familiarity with command line tools like netcat, nmap, ssh, tcpdump and wget. Found a Zero-day vulnerability in the infrastructure of this assignment that allowed me to snoop on possible solutions and the submissions of other students.</li>
+      <ul class="bullets">
+        <li>Lead engineer across two concurrent research programs spanning disaster-recovery infrastructure and national-scale hospital network intelligence, delivering systems across both simulation and live hospital environments.</li>
+        <li>Presented research outcomes to ARPA-H Director Dr. Alicia Jackson; received active institutional encouragement from multiple government agencies to pursue commercialization.</li>
       </ul>
-  </ul>
-  <br>
-<li><b>Computer Networks</b></li>
-  <ul>
-    <li><b> Router:</b> Designed a router that handles communications between 2 emulated servers and a client. Router handles ARP, TCP, UDP, and ICMP packets, and supports wget, ping, and traceroute commands. Implemented longest prefix match and ARP caching.<b> Language: C </b><br></li>
-    <li><b> Sliding Window Protocol:</b> Implemented the hosts as threads that run on my processor, and simulated the network links between these hosts (threads). Implemented Sliding Window Protocol that uses selective retransmission and cumulative ACK scheme to achieve reliable transmission of data frames and thereby enabling the receiver to populate the entire original message that the sender had sent.<b> Language: C</b><br></li>
-  </ul>
-  <br>
-<li><b>Software Engineering</b></li>
-  <ul>
-    <li><b>"Birds of a Feather":</b> Led and developed a Mobile App alongside a team of 3 other developers that uses the new Nearby API to find and make friends in the same class as the user. Implemented filters to shortlist other users based on user preferences and send messages using the Java Nearby API. Focused on using Agile principles, such as Scrum and standups to brainstorm through development and designing. Constantly maintained an organized Github repository.<b> Language: Java</b><br></li>
-  </ul>
-  <br>
-<li><b>Systems Architecture</b></li>
-  <ul>
-    <li><b>"Yodie":</b> Led and developed a custom processor that supports specific Forward Error Correction (FEC) tasks alongside a team of 2 other developers. The instruction set architecture of our processor featured fixed-length instructions (machine code) 9 bits wide.<b> Languages: System Verilog and Python</b><br></li>
-  </ul>
-  <br>
-<li><b>Networked Services</b></li>
-  <ul>
-    <li><b>"SurfStore":</b> Created a cloud-based file storage service called SurfStore. SurfStore is a networked file storage application that is based on Dropbox, and lets you sync files to and from the “cloud”. Implemented the cloud service, and a client which interacts with the service via gRPC.<b> Language: Go</b><br></li>
-    <li><b>"TritonHTTP":</b> Built a simple web server that implements a subset of the HTTP/1.1 protocol specifications. Clients connect to a port on the server and use the TritonHTTP protocol to retrieve files from the server. The server reads data from the client to interpret one or more requests. Supports pipelined requests.<b> Language: Go</b><br></li>
-  </ul>
-  <br>
-<li><b>Operating Systems</b></li>
-  <ul>
-    <li><b>Nachos Operating System:</b> Designed an Operating System by implementing my own threading, scheduling, and multiprogramming functions from scratch to make a functional OS.<b> Language: Java</b><br></li>
-  </ul>
-  <br>
-<li><b>Deep Learning</b></li>
-  <ul>
-    <li><b>Taxi Travel Time Prediction Task:</b> Led and developed an MLP Regressor model alongside 2 other developers that is trained on an engineered dataset that incorporates various factors, such as the Type of Call, Local Time in Portugal, Day of the Week, etc. Heavily utilized feature engineering to determine rush-hours and non rush-hours, and the MLP model architecture was built with 4 layers and uses ReLU as an activation function, outputting a single floating point number. Experimented with LSTM models and also a LightGBM model but the MLP Regressor gave us the best results.<b> Language: Python</b><br></li>
-  </ul>
-  <br>
-<li><b>Computer Vision</b></li>
-  <ul>
-    <li>Implemented and learnt methods involving computer vision such as: 
-      <ul>
-        <li><b>Photometric Stereo:</b> implemented Lambertian photometric stereo on images stored in .pickle files. Rendered images of faces with two different point light sources using a Lambertian reflectance model.</li>
-        <li><b>Edge and Corner Detection:</b> wrote my own function to perform edge detection, and implemented smoothing and gradient computations.</li>
-        <li><b>Image Classification using Bag-of-words:</b>  build a classifier to determine whether an input image contains a face. Extracted SIFT features, and my own custom image patch features.</li>
-        <li><b>Training a CNN for MNIST digit classification:</b> Built multiple models to employ trial and error to find which optimization algorithm is better, Stochastic Gradient Descent or Adam, and experimenting between various dropout layer permuations. Achieved 98% testing accuracy.</li>
+
+      <!-- CRASHCART -->
+      <div class="sub-project">
+        <div class="sub-project-header">
+          <a href="https://youtu.be/eaVPTQJs1CE?si=oRAkEUl-orU2jQL2" target="_blank">CRASHCART</a>
+          <span class="sub-role-tag">Principal Network Systems Engineer</span>
+          <span class="sub-role-tag">Sole Engineer</span>
+        </div>
+        <ul class="bullets">
+          <li>Designed and deployed a self-contained "hospital-network-in-a-box" to restore critical clinical functionality during ransomware-induced outages, operating fully independent of compromised hospital infrastructure to eliminate co-infection risk during recovery.</li>
+          <li>Architected a hybrid network (Starlink + AT&T FirstNet cellular + on-prem) with segmented L2/L3 design, point-to-point wireless links through hospital windows, and private CBRS-based cellular LAN, providing resilient, rapidly deployable connectivity under degraded conditions.</li>
+          <li>Reconstructed clinical system dependencies (EHR, lab systems, patient monitoring, radiology/PACS, printing) into a portable architecture; solving hidden middleware and integration constraints required for end-to-end clinical functionality.</li>
+          <li>Engineered critical workflow integrations: remote printing via IPSec VPN tunneling, lab result routing through LIS/middleware stack into EPIC EHR, isolated life-critical patient monitoring networks, PACS/DICOM server configuration, and cellular handoff stabilization via GPS-synchronized PTP master clock.</li>
+          <li>Led first live field deployment at <strong>El Centro Regional Medical Center, CA</strong> and subsequent deployment at <strong>ValleyWise Health Medical Center, AZ</strong> — identifying real-world constraints (thermal degradation at 110°F, PoE power delivery failure, physical access limitations) and adapting system design to ensure reliable operation under field conditions.</li>
+          <li>Led multi-level research team (undergraduate and graduate students) through concurrent sprint cycles: scoping workstreams, managing collaborative, and maintaining delivery quality under high-ambiguity, time-constrained conditions.</li>
+        </ul>
+      </div>
+
+      <!-- Ransomwhere? -->
+      <div class="sub-project">
+        <div class="sub-project-header">
+          Ransomwhere?
+          <span class="sub-role-tag">Data Scientist</span>
+          <span class="sub-role-tag">Platform Engineer</span>
+        </div>
+        <ul class="bullets">
+          <li>Inherited a partially functional system mid-project with no handover documentation; rebuilt it from the ground up while keeping it operational, with no prior experience in any of the relevant tools.</li>
+          <li>Built an end-to-end automated data pipeline (Raw Data → InfluxDB → Grafana) ingesting and normalizing high-frequency heterogeneous signals — IP probing results, FHIR endpoint health, and NTP beacon traffic — across distributed hospital systems nationally.</li>
+          <li>Designed tag-and-field schemas in InfluxDB for three structurally incompatible data streams; synchronized data across multiple purpose-specific servers (scanning, consolidation, backup, database) via automated rsync pipelines on hourly cron cycles.</li>
+          <li>Designed system behavior to handle missing, delayed, and conflicting signals, ensuring downstream inference remained stable despite the absence of reliable ground truth across any single stream.</li>
+          <li>Built geospatial dashboards in Grafana with complex query logic and transformations to visualize near real-time infrastructure state and surface outage patterns across hospitals at national scale.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <div class="section-label"><h2>Publications</h2></div>
+    <div class="pub-list">
+
+      <div class="pub-card">
+        <div class="pub-title">
+          <a href="https://cseweb.ucsd.edu/~schulman/docs/healthsec25-crashcart.pdf" target="_blank">CRASHCART: Truckin' in a Backup System to Revive Hospitals During Computer Outages</a>
+        </div>
+        <div class="pub-authors">Almog Bar-Yossef, <strong>Kartikeyan Subramanyam</strong>, Jonathon Guthrie, Alex Gao, Christian Dameff, Jeff Tully, Aaron Schulman</div>
+        <div class="pub-venue">ACM Workshop on Cybersecurity in Healthcare (HealthSec '25) · ARPA-H DIGIHEALS · 2025</div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-title">
+          <a href="https://arxiv.org/pdf/2311.16293" target="_blank">FHEmem: A Processing In-Memory Accelerator for Fully Homomorphic Encryption</a>
+        </div>
+        <div class="pub-authors">UCSD System Energy Efficiency Lab (SeeLab)</div>
+        <div class="pub-venue">University of California, San Diego</div>
+      </div>
+
+    </div>
+
+    <!-- Patent -->
+    <div style="margin-top: 2rem;">
+      <div class="section-label" style="margin-bottom:1rem"><h2>Patent</h2></div>
+      <div class="patent-card">
+        <div class="patent-title">Systems, Devices and Methods for a Mobile and Rapidly Deployable Backup Network</div>
+        <div class="patent-meta">
+          <div class="patent-meta-item">Application No. <span>63/908,287</span></div>
+          <div class="patent-meta-item">Type <span>U.S. Provisional Patent</span></div>
+          <div class="patent-meta-item">Role <span>Co-Inventor</span></div>
+          <div class="patent-meta-item">Filed <span>October 2025</span></div>
+          <div class="patent-meta-item">Assignee <span>The Regents of the University of California</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAST EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label"><h2>Prior Research & Experience</h2></div>
+
+    <!-- UCSD Research Assistant -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">Research Assistant</div>
+        <div class="exp-period">June 2022 – February 2024</div>
+      </div>
+      <div class="exp-org">University of California, San Diego</div>
+
+      <div class="sub-project">
+        <div class="sub-project-header">Aviation Network Security (Aerosec Group)</div>
+        <ul class="bullets">
+          <li>Reverse-engineered commercial aircraft network architecture — reconstructed full multi-VLAN topology, firewall rules, and segmentation logic from selectively available system logs and disk images using Python and Bash.</li>
+          <li>Mapped all open ports to running processes; identified structural attack surfaces and segmentation weaknesses in safety-critical aviation network infrastructure.</li>
+          <li><em style="color:var(--muted); font-size:0.82rem">Work is restricted from public disclosure for reasons of national and industrial security.</em></li>
+        </ul>
+      </div>
+
+      <div class="sub-project">
+        <div class="sub-project-header">FHEmem — In-Memory Accelerator for Fully Homomorphic Encryption (SeeLab)</div>
+        <ul class="bullets">
+          <li>Configured and extended the <a href="https://github.com/microsoft/SEAL.git">Microsoft SEAL library</a> for encrypted CNN workload execution under CKKS and BFV encryption schemes.</li>
+          <li>Modeled and optimized encrypted data flow within CNN architecture to minimize homomorphic operation count; identified computational bottlenecks per layer.</li>
+          <li>Produced a 20,000-operation benchmark suite (C#, C++) used as primary validation workload for the research paper.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Securin -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">VMaaS Intern — Vulnerability Management as a Service</div>
+        <div class="exp-period">July 2022 – December 2022</div>
+      </div>
+      <div class="exp-org">Securin · Albuquerque, NM</div>
+      <ul class="bullets">
+        <li>Developed NLP-based vulnerability classification model trained on 210,000+ CVE records from NVD — 92% prediction accuracy enabling automated threat prioritization at scale.</li>
+        <li>Executed vulnerability assessments across enterprise client environments using Qualys, Nessus, Nexpose, and Ivanti Neurons; conducted penetration testing and reverse engineering.</li>
+        <li>Executed full vulnerability management lifecycle: identification, evaluation, remediation validation, and executive reporting.</li>
       </ul>
-    <li>All of the above are coded in <b>Python</b></li>
-  </ul>
-  <br>
-<li><b>Compiler Construction</b></li>
-  <ul>
-    <li><b>'snek' Compiler:</b> Created a Rust compiler to generate x86-64 assembly for a generic language. Optimized the compiler to reduce the number of assembly instructions and implemented let instructions, binary operators, booleans, conditionals, variable assignment, loops, top-level function definitions, heap allocation, and garbage collection.<b> Language: Rust</b></li>
-  </ul>
-  <br>
-<li><b>Digital Systems</b></li>
-  <ul>
-    <li><b>6 Tap Linear Feedback Register:</b> Designed an encrypter which reads a message from a range of locations in a register file in 8-bit ASCII format, encrypts the lower 6 bits with a 6-bit PN code, and writes the resulting encrypted message into another range of locations in the same register file.<b> Language: System Verilog</b><br></li>
-    <li><b>Traffic Signal:</b> Implemented a traffic signal controller for a junction with a 3-case scenario: East-West Straights, East-West Lefts, and North-South straights. Managed 6 possible states between all 3 sets of traffic lights.<b> Language: System Verilog</b> <br></li>
-    <li><b>Alarm Clock:</b> Implemented a conventional alarm clock, which tracks and displays hours, minutes, and seconds. Extended the alarm clock functionality to include days of the week and month and date.<b> Language: System Verilog</b><br></li>
-  </ul>
-  <br>
-<li><b>Advanced Data Structures</b></li>
-  <ul>
-    <li><b>DNS Blocker:</b> Implemented a hash table-based in-memory database using single linked chains for collision resolution. The database contained the DNS names of websites the client wished to block. If a DNS name is found in the database, it will respond with a blocked message, and not let the host access the webpage.<b> Language: C</b> <br></li>
-    <li><b>FP Converter:</b> Built a program that reads the file of binary 8-bit FP numbers and converted them to the IEEE Single Precision (32 bit) format.<b> Language: ARM-32</b> <br></li>
-    <li><b>The Game of Life:</b> Developed by John Conway, the Game of Life is a mathematical simulation of a simplified evolution process. Developed a simulation that occurs on a two-dimensional grid of cells over a series of discrete timesteps. Wrote the fastest program in a class of 250 students.<b> Language: ARM-32</b><br></li>
-    <li><b>ETL Program:</b> Made a custom ETL Program to process CSV files <b> Language: C</b><br></li>
-  </ul>
-  <br>
-<li><b>Cryptography</b></li>
-<br>
-<li><b>Theory of Computation</b></li>
-<br>
-</ul>
+    </div>
 
-</blockquote>
-<table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
-<tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Awards and Competitions&nbsp;&nbsp;</big></font></b></nobr></td></tr></table>
-<blockquote>
-Provost Honors, UCSD (2023)<br>
-San Diego Capture The Flag 2023 <br>
-<a href="https://github.com/acmucsd/sdctf-2022"> San Diego Capture The Flag 2022 </a><br>
-Solved the majority of the challenges on <a href="https://www.defendtheweb.net/">Defend the Web</a>.<br>
-Fastest Assembly code in CSE 30 for the Game of Life, UCSD (2020)<br> 
-High Achiever, Dubai Scholars Private School (2019)<br>
-</blockquote>
+    <!-- Spire -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">Cybersecurity Intern</div>
+        <div class="exp-period">July 2021 – September 2021</div>
+      </div>
+      <div class="exp-org">Spire Solutions · Dubai, UAE</div>
+      <ul class="bullets">
+        <li>Deployed and calibrated enterprise security platforms (CyberObserver, Elastic SIEM, AppSpider DAST, InsightVM) for endpoint analytics and dynamic application security testing across client infrastructure.</li>
+        <li>Incorporated and calibrated security solutions to clients' existing IT infrastructure across UAE enterprise environments.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-<table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
-<tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Skills&nbsp;&nbsp;</big></font></b></nobr></td></tr></table>
-<blockquote>
-<ul>
-  <li><b>Technical Skills</b></li>
-  <ul>
-    <li><b>Programming languages:</b> C, Python, Go, Java, C++, Rust, C#, x86, ARM-64, HTML, CSS, SystemVerilog, bash.</li>
-    <li><b>Certifications:</b> CompTIA Security+ (in progress), Qualys VMDR, Qualys Vulnerability Management</li>
-    <li><b>Operating Systems:</b> macOS, Linux, Windows</li>
-    <li><b>Tools:</b> LATEX, Github, Github Actions, NMap, MATLAB, Metasploit, Wireshark, Docker, VMWare, Elastic, Rapid7 - InsightVM & AppSpider & Nexpose, Qualys, RiskSense, Nessus Tenable, Android Studio, Robolectric, JUnit, Zenhub, Visual Studio, Microsoft Office.</li>
-  </ul>
-  <li><b>Soft Skills</b></li>
-  <ul>
-    <li>Time Management</li>
-    <li>Communication</li>
-    <li>Work under pressure and with time restrictions</li>
-    <li>Teamwork</li>
-    <li>Leadership</li>
-    <li>Public Speaking</li>
-  </ul>
-  <li><b>Linguistic Skills</b></li>
-  <ul>
-    <li><b>English:</b> Fluent in speaking, reading, and writing.</li>
-    <li><b>Hindi:</b> Fluent in speaking, reading, and writing.</li>
-    <li><b>Urdu:</b> Fluent in speaking, reading, and writing.</li>
-    <li><b>Arabic:</b> Intermediate in speaking, reading, and writing.</li>
-    <li><b>Punjabi:</b> Fluent in speaking.</li>
-  </ul>
-</ul>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label"><h2>Technical Skills</h2></div>
+    <div class="skills-grid">
 
+      <div class="skill-group">
+        <div class="skill-group-title">Security & Infrastructure</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Metasploit</span>
+          <span class="skill-tag">Wireshark</span>
+          <span class="skill-tag">Nessus</span>
+          <span class="skill-tag">Qualys</span>
+          <span class="skill-tag">Rapid7 InsightVM</span>
+          <span class="skill-tag">AppSpider</span>
+          <span class="skill-tag">BurpSuite</span>
+          <span class="skill-tag">RiskSense</span>
+          <span class="skill-tag">NMap</span>
+          <span class="skill-tag">Elastic SIEM</span>
+        </div>
+      </div>
 
-</blockquote>
-<table border=0 hspace=4 cellspacing=0 width="100%" celpadding=3>
-<tr bgcolor="#86af49"><td width="100%"><nobr><b><font face="Arial"><big>Misc</big></font></b></nobr></td></tr></table>
-<blockquote>
-  <p>My educational experiences and activities predominantly involved security, networks, and systems architecture, and during my time at UCSD, I had the opportunity to learn from great minds in their respective fields. I was also involved in various clubs and organizations, such as: <ul>
-    <li>UCSD Field Hockey Club</li>
-    <li>ACM Cyber</li>
-    <li>Pi Kappa Alpha</li>
-  </ul>
-  During my free time, I like to play golf, surf, listen to music (favorite artists are Eric Clapton, Red Hot Chili Peppers and Radiohead), and read books (my current favorite authors are Fyodor Dostoevsky and Haruki Murakami) and security research papers. I am also an avid NBA fan and am a massive supporter of Kobe Bryant and Kawhi Leonard.
-</blockquote>
-  <p>&nbsp;</p>
-<blockquote>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-</blockquote>
+      <div class="skill-group">
+        <div class="skill-group-title">Data & Intelligence Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag">InfluxDB</span>
+          <span class="skill-tag">Grafana</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">rsync</span>
+          <span class="skill-tag">cron</span>
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">Microsoft SEAL</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Programming Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">Go</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Rust</span>
+          <span class="skill-tag">Bash</span>
+          <span class="skill-tag">x86 ASM</span>
+          <span class="skill-tag">ARM-64</span>
+          <span class="skill-tag">SystemVerilog</span>
+          <span class="skill-tag">PHP</span>
+          <span class="skill-tag">HTML/CSS</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Cloud & Infrastructure</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">VMware</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Windows Server 2022</span>
+          <span class="skill-tag">Active Directory</span>
+          <span class="skill-tag">IPSec VPN</span>
+          <span class="skill-tag">CBRS/Private 5G</span>
+          <span class="skill-tag">VLAN / L2/L3</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Certifications</div>
+        <div class="skill-tags">
+          <span class="skill-tag" style="border-color:var(--gold-dim); color:var(--gold)">OSCP (in progress)</span>
+          <span class="skill-tag">Qualys VMDR</span>
+          <span class="skill-tag">Qualys Vulnerability Management</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">English — Fluent</span>
+          <span class="skill-tag">Hindi — Fluent</span>
+          <span class="skill-tag">Urdu — Fluent</span>
+          <span class="skill-tag">Punjabi — Fluent</span>
+          <span class="skill-tag">Arabic — Intermediate</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section>
+  <div class="container">
+    <div class="section-label"><h2>Education</h2></div>
+    <div class="exp-item" style="margin-bottom:0">
+      <div class="exp-header">
+        <div class="exp-role">Bachelor of Science — Computer Science</div>
+        <div class="exp-period">September 2019 – June 2023</div>
+      </div>
+      <div class="exp-org">University of California, San Diego</div>
+      <div class="exp-program">Cum Laude &nbsp;·&nbsp; Major GPA: 3.65 / 4.00 &nbsp;·&nbsp; Provost Honors 2023</div>
+      <div class="badges" style="margin-top:0.8rem">
+        <span class="badge">Cryptography</span>
+        <span class="badge">Network Security</span>
+        <span class="badge">Systems Architecture</span>
+        <span class="badge">Operating Systems</span>
+        <span class="badge">Compiler Construction</span>
+        <span class="badge">Deep Learning</span>
+        <span class="badge">Computer Vision</span>
+        <span class="badge">Networked Services</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSEWORK & PROJECTS -->
+<section id="coursework">
+  <div class="container">
+    <div class="section-label"><h2>Relevant Coursework & Projects</h2></div>
+    <div class="course-grid">
+
+      <div class="course-card">
+        <div class="course-title">Computer Security</div>
+        <ul class="course-items">
+          <li>Buffer overflows, side-channel (memory & time), SQL injection, XSS, CSRF</li>
+          <li>Network attacks: social engineering, reverse engineering, netcat, nmap, tcpdump</li>
+          <li><strong>Discovered a previously undiscovered vulnerability</strong> in the assignment infrastructure allowing access to other students' submissions</li>
+        </ul>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">Computer Networks</div>
+        <ul class="course-items">
+          <li><strong>Router</strong> — ARP, TCP, UDP, ICMP, longest prefix match, ARP caching (C)</li>
+          <li><strong>Sliding Window Protocol</strong> — selective retransmission, cumulative ACK, reliable data transmission (C)</li>
+        </ul>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">Networked Services</div>
+        <ul class="course-items">
+          <li><strong>SurfStore</strong> — Dropbox-like cloud file storage with gRPC (Go)</li>
+          <li><strong>TritonHTTP</strong> — HTTP/1.1 web server with pipelining support (Go)</li>
+        </ul>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">Operating Systems</div>
+        <ul class="course-items">
+          <li><strong>Nachos OS</strong> — threading, scheduling, and multiprogramming from scratch (Java)</li>
+        </ul>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">Systems Architecture</div>
+        <ul class="course-items">
+          <li><strong>Yodie</strong> — custom processor for FEC tasks; 9-bit fixed-length ISA (SystemVerilog + Python)</li>
+        </ul>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">Deep Learning</div>
+        <ul class="course-items">
+          <li><strong>Taxi Travel Time Prediction</strong> — MLP Regressor with feature engineering for rush-hour modeling; outperformed LSTM and LightGBM baselines (Python)</li>
+        </ul>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">Computer Vision</div>
+        <ul class="course-items">
+          <li>Photometric stereo, edge & corner detection, bag-of-words image classification</li>
+          <li><strong>CNN for MNIST</strong> — 98% test accuracy; SGD vs. Adam experimentation (Python)</li>
+        </ul>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">Compiler Construction</div>
+        <ul class="course-items">
+          <li><strong>'snek' Compiler</strong> — Rust compiler generating x86-64 assembly; heap allocation, garbage collection, full expression support</li>
+        </ul>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">Software Engineering</div>
+        <ul class="course-items">
+          <li><strong>Birds of a Feather</strong> — Android app using Nearby API for class-based friend discovery; Agile/Scrum methodology (Java)</li>
+        </ul>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">Advanced Data Structures</div>
+        <ul class="course-items">
+          <li><strong>DNS Blocker</strong> — hash table-based in-memory database (C)</li>
+          <li><strong>Game of Life</strong> — <strong>fastest implementation in a class of 250 students</strong> (ARM-32)</li>
+          <li>FP Converter, ETL Program (C, ARM-32)</li>
+        </ul>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">Digital Systems</div>
+        <ul class="course-items">
+          <li>6-tap LFSR encrypter, traffic signal controller, alarm clock with day/date tracking (SystemVerilog)</li>
+        </ul>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">Also Completed</div>
+        <ul class="course-items">
+          <li>Cryptography</li>
+          <li>Theory of Computation</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section>
+  <div class="container">
+    <div class="section-label"><h2>Awards & Competitions</h2></div>
+    <div class="awards-list">
+      <div class="award-item">
+        <div class="award-name">Cum Laude — University of California, San Diego</div>
+        <div class="award-year">2023</div>
+      </div>
+      <div class="award-item">
+        <div class="award-name">Provost Honors — University of California, San Diego</div>
+        <div class="award-year">2023</div>
+      </div>
+      <div class="award-item">
+        <div class="award-name"><a href="https://github.com/acmucsd/sdctf-2022" target="_blank">San Diego Capture the Flag (SDCTF)</a></div>
+        <div class="award-year">2022, 2023</div>
+      </div>
+      <div class="award-item">
+        <div class="award-name"><a href="https://www.defendtheweb.net/" target="_blank">Defend the Web</a> — solved the majority of challenges</div>
+        <div class="award-year">—</div>
+      </div>
+      <div class="award-item">
+        <div class="award-name">Fastest ARM Assembly implementation — Game of Life, CSE 30 (class of 250)</div>
+        <div class="award-year">2020</div>
+      </div>
+      <div class="award-item">
+        <div class="award-name">High Achiever — Dubai Scholars Private School</div>
+        <div class="award-year">2019</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISC -->
+<section id="misc">
+  <div class="container">
+    <div class="section-label"><h2>Miscellaneous</h2></div>
+    <div class="misc-grid">
+      <div class="misc-block">
+        <h3>Clubs & Organizations</h3>
+        <ul>
+          <li>UCSD Field Hockey Club</li>
+          <li>ACM Cyber</li>
+          <li>Pi Kappa Alpha</li>
+        </ul>
+      </div>
+      <div class="misc-block">
+        <h3>Interests</h3>
+        <p>Golf, surfing, security research. Music: Eric Clapton, Red Hot Chili Peppers, Radiohead. Literature: Fyodor Dostoevsky, Haruki Murakami. Avid NBA fan — Kobe Bryant and Kawhi Leonard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Kartikeyan Subramanyam &nbsp;·&nbsp; k1subramanyam@health.ucsd.edu &nbsp;·&nbsp; San Diego, CA</p>
+  </div>
+</footer>
 
 </body>
 </html>
