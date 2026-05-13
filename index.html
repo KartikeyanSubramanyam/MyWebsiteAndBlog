@@ -722,11 +722,11 @@ strong { color: var(--text); font-weight: 600; }
         </div>
         <ul class="bullets">
           <li>Designed and deployed a self-contained "hospital-network-in-a-box" to restore critical clinical functionality during ransomware-induced outages, operating fully independent of compromised hospital infrastructure to eliminate co-infection risk during recovery.</li>
-          <li>Architected a hybrid network (Starlink + AT&T FirstNet cellular + on-prem) with segmented L2/L3 design, point-to-point wireless links through hospital windows, and private CBRS-based cellular LAN, providing resilient, rapidly deployable connectivity under degraded conditions.</li>
+          <li>Architected a hybrid network (Starlink + Cellular Backhaul) with segmented L2/L3 design, point-to-point wireless links, and private CBRS-based cellular LAN, providing resilient, rapidly deployable connectivity under degraded conditions.</li>
           <li>Reconstructed clinical system dependencies (EHR, lab systems, patient monitoring, radiology/PACS, printing) into a portable architecture; solving hidden middleware and integration constraints required for end-to-end clinical functionality.</li>
-          <li>Engineered critical workflow integrations: remote printing via IPSec VPN tunneling, lab result routing through LIS/middleware stack into EPIC EHR, isolated life-critical patient monitoring networks, PACS/DICOM server configuration, and cellular handoff stabilization via GPS-synchronized PTP master clock.</li>
-          <li>Led first live field deployment at <strong>El Centro Regional Medical Center, CA</strong> and subsequent deployment at <strong>ValleyWise Health Medical Center, AZ</strong> — identifying real-world constraints (thermal degradation at 110°F, PoE power delivery failure, physical access limitations) and adapting system design to ensure reliable operation under field conditions.</li>
-          <li>Led multi-level research team (undergraduate and graduate students) through concurrent sprint cycles: scoping workstreams, managing collaborative, and maintaining delivery quality under high-ambiguity, time-constrained conditions.</li>
+          <li>Engineered critical workflow integrations: remote printing via IPSec VPN tunneling, lab result routing through LIS/middleware stack into EPIC EHR (resource limited), isolated life-critical patient monitoring networks (inherent by vendor design), PACS/DICOM server configuration, and cellular handoff stabilization via PTP master clock (initially restricted by vendor design).</li>
+          <li>Led first live field deployment at <strong>El Centro Regional Medical Center, CA</strong> and subsequent deployment at <strong>ValleyWise Health Medical Center, AZ</strong>: identifying real-world constraints (thermal degradation at 110°F, PoE power delivery failure, physical access limitations) and adapting system design to ensure reliable operation under field conditions.</li>
+          <li>Led multi-level research team (undergraduate and graduate students) through concurrent research/engineering sprint cycles: initally scoping workstreams and experiments (under guidance from mentors), eventually managing collaborations, and maintaining delivery quality under high-ambiguity, time-constrained conditions.</li>
         </ul>
       </div>
 
@@ -739,8 +739,8 @@ strong { color: var(--text); font-weight: 600; }
         </div>
         <ul class="bullets">
           <li>Inherited a partially functional system mid-project with no handover documentation; rebuilt it from the ground up while keeping it operational, with no prior experience in any of the relevant tools.</li>
-          <li>Built an end-to-end automated data pipeline (Raw Data → InfluxDB → Grafana) ingesting and normalizing high-frequency heterogeneous signals — IP probing results, FHIR endpoint health, and NTP beacon traffic — across distributed hospital systems nationally.</li>
-          <li>Designed tag-and-field schemas in InfluxDB for three structurally incompatible data streams; synchronized data across multiple purpose-specific servers (scanning, consolidation, backup, database) via automated rsync pipelines on hourly cron cycles.</li>
+          <li>Built an end-to-end automated data pipeline (Raw Data → InfluxDB → Grafana) ingesting and normalizing high-frequency heterogeneous signals (IP probing results, FHIR endpoint health, and NTP beacon traffic) across distributed hospital systems across the US.</li>
+          <li>Designed tag-and-field schemas in InfluxDB for three structurally incompatible data streams; synchronized data across multiple purpose-specific servers (scanning, backup, consolidation, database) via automated rsync pipelines on hourly cron cycles.</li>
           <li>Designed system behavior to handle missing, delayed, and conflicting signals, ensuring downstream inference remained stable despite the absence of reliable ground truth across any single stream.</li>
           <li>Built geospatial dashboards in Grafana with complex query logic and transformations to visualize near real-time infrastructure state and surface outage patterns across hospitals at national scale.</li>
         </ul>
